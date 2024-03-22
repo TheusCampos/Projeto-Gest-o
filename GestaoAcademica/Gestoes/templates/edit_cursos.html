@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<!-- edit_cursos.html -->
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label for="nome" class="block text-gray-700">Nome:</label>
+        <input type="text" id="nome" name="nome" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50" value="{{ cursos.nome }}">
+    </div>
+    <div class="mb-4">
+        <label for="descricao" class="block text-gray-700">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50" value="{{ cursos.descricao }}">
+    </div>
+    <div class="mb-4">
+        <label for="carga_horaria" class="block text-gray-700">Carga horária:</label>
+        <input type="text" id="carga_horaria" name="carga_horaria" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50" value="{{ cursos.carga_horaria }}">
+    </div>
+    <div class="mb-4">
+        <label for="professor" class="block text-gray-700">Professor:</label>
+        <select id="professor" name="professor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50">
+            <option value="">Selecione um professor</option>
+            {% for professor in professores %}
+                <option value="{{ professor.id }}" {% if cursos.professor == professor.id %}selected{% endif %}>{{ professor.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+{% endblock %}

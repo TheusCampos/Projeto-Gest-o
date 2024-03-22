@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<section class="my-5 p-4 info-section bg-white rounded-lg">
+    <h2 class="text-2xl font-bold ">Lista de Alunos</h2>
+    <div class="btn btn-primary mx-2">
+        <a href="{% url 'novo_aluno' %}" >Novo Aluno</a>
+    </div>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Nome do Aluno</th>
+                <th class="px-4 py-2">Matrícula</th>
+                <th class="px-4 py-2 ">Endereço</th>
+                <th class="px-4 py-2 ">Telefone</th>
+                <th class="px-4 py-2 ">Genero</th>
+                <th class="px-4 py-2 ">Data de inscrição</th>
+                <th class="px-4 py-2"></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td class="px-4 py-2">{{ aluno.nome }}</td>
+                <td class="px-4 py-2">{{ aluno.matricula }}</td> 
+                <td class="px-4 py-2">{{ aluno.endereco }}</td>
+                <td class="px-4 py-2">{{ aluno.telefone }}</td>
+                <td class="px-4 py-2">{{ aluno.genero }}</td>
+                <td class="px-4 py-2">{{ aluno.data_de_ingresso }}</td>
+                <td class="px-4 py-2 text-right">
+                    <a href="{% url 'delete_aluno' aluno.id %}" class="btn btn-primary btn-sm text-right">Deletar</a>
+                    <a href="{% url 'edit_aluno' aluno.id %}" class="btn btn-primary btn-sm text-right">Editar</a>
+                </td>
+
+            {% endfor %}
+        </tbody> 
+    </table>
+        <a href="javascript:history.go(-1)" class="btn btn-primary mb-4">Voltar</a>
+
+</section>
+{% endblock %}

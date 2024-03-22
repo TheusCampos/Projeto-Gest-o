@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h2 class="block text-gray-700">Deletar Aluno</h2>
+
+<form method="post" class="bg-gray-200 p-6 rounded-md">
+    {% csrf_token %}
+    <div class="mb-4">
+        <p>Você tem certeza que deseja deletar o Professor {{ professor.nome }}?</p>
+    </div>
+    <input type="submit" value="Deletar" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<section class="my-5 p-4 info-section bg-white rounded-lg">
+    <h2 class="text-2xl font-bold ">Lista de Professores</h2>
+    <div class="btn btn-primary mx-2">
+        <a href="{% url 'novo_professor' %}" >Novo Professor</a>
+    </div>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Nome do Professor</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Formação</th>
+                <th class="px-4 py-2">Talefone</th>
+                <th class="px-4 py-2">Data de Contratação</th>
+                <th class="px-4 py-2"></th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for professor in professores %}
+                <tr>
+                    <td class="px-4 py-2">{{ professor.nome }}</td>
+                    <td class="px-4 py-2">{{ professor.email }}</td>
+                    <td class="px-4 py-2">{{ professor.formacao }}</td>
+                    <td class="px-4 py-2">{{ professor.telefone }}</td>
+                    <td class="px-4 py-2">{{ professor.data_de_contratacao }}</td>
+                    <td class="px-4 py-2 text-right">
+                        <a href="{% url 'delete_professor' professor.id %}" class="btn btn-primary btn-sm text-right">Deletar</a>
+                        <a href="{% url 'edit_professor' professor.id %}" class="btn btn-primary btn-sm text-right">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="javascript:history.go(-1)" class="btn btn-primary ">Voltar</a>
+
+</section>
+{% endblock %}

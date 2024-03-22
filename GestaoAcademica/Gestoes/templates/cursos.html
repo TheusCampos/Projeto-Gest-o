@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<section class="my-5 p-4 info-section bg-white rounded-lg">
+    <h2 class="text-2xl font-bold">Lista de Cursos</h2>
+    <div class="btn btn-primary mx-2">
+        <a href="{% url 'novo_cursos' %}">Novo Curso</a>
+    </div>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Nome do Curso</th>
+                <th class="px-4 py-2">Descrição</th>
+                <th class="px-4 py-2">Carga Horária</th>
+                <th class="px-4 py-2">Professor</th>
+                <th class="px-4 py-2"></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td class="px-4 py-2">{{ curso.nome }}</td>
+                <td class="px-4 py-2">{{ curso.descricao }}</td>
+                <td class="px-4 py-2">{{ curso.carga_horaria }}</td>
+                <td class="px-4 py-2">{{ curso.professor.nome }}</td>
+                <td class="px-4 py-2 text-right">
+                    <a href="{% url 'delete_cursos' curso.id %}" class="btn btn-primary btn-sm text-right">Deletar</a>
+                    <a href="{% url 'edit_cursos' curso.id %}" class="btn btn-primary btn-sm text-right">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+    <a href="javascript:history.go(-1)" class="btn btn-primary ">Voltar</a>
+
+</section>
+{% endblock %}
